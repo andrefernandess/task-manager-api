@@ -5,6 +5,7 @@ class ApiVersionConstraint
   end
 
   def matches?(req)
-    @default || req.headers['Accept'].include?("application/vnd.taskmanager.v#{@version}")
+     header_accept = "application/vnd.taskmanager.v#{@version}"
+     @default || req.headers['Accept'].include?(header_accept)
   end
 end
