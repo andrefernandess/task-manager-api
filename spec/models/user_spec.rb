@@ -14,8 +14,10 @@ RSpec.describe User, type: :model do
   describe '#info' do
     it 'returns email and created_at' do
       user.save!
+      #este metodo permite alterar o funcionamento do devise que, para nesta chamada o token retornado seja oque foi definido, neste caso: abc123xyzTOKEN
+      allow(Devise).to receive(:friendly_token).and_return('abc123xyzTOKEN')
 
-      expect(user.info).to eq("#{user.email} - #{user.created_at}")
+      expect(user.info).to eq("#{user.email} - #{user.created_at} - Token: abc123xyzTOKEN")
     end
   end
 
