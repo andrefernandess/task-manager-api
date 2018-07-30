@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   validates_uniqueness_of :auth_token
 
+  before_create :generate_authentication_token!
+
   def info
     "#{email} - #{created_at} - Token: #{Devise.friendly_token}"
   end
@@ -14,5 +16,7 @@ class User < ApplicationRecord
     begin
       self.auth_token = Devise.friendly_token
     end while User.exists?(auth_token: self.auth_token)
+    #aqui , esta sendo verificado se ja existe algum usuario com este mesmo token, e fica no loop enquanto houver 
+
   end
 end

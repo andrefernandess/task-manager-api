@@ -22,6 +22,7 @@ RSpec.describe User, type: :model do
   end
 
   describe '#generate_authentication_token!' do
+    # it 'generates a unique auth_token' testes descritos desta forma, aparecem no rpec como testes pendentes, ou segja, vc quer criar o teste mas ainda nao tem um corpo para implementar o teste
     it 'generates a unique auth_token' do
       allow(Devise).to receive(:friendly_token).and_return('abc123xyzTOKEN')
       user.generate_authentication_token!
@@ -30,7 +31,8 @@ RSpec.describe User, type: :model do
     end
 
     it 'generates  another auth token when the current auth token already has been taken' do
-      existing_user = create(:user, auth_token: 'abc123tokenxyz')
+      allow(Devise).to receive(:friendly_token).and_return('abc123tokenxyz','abc123tokenxyz', 'abc123456789')
+      existing_user = create(:user)
 
       allow(Devise).to receive(:friendly_token).and_return('abc123tokenxyz', 'abc123456789')
 
