@@ -26,7 +26,9 @@ RSpec.describe 'Users API', type: :request do
 
           it 'returns the json for the user with auth token' do
             user.reload
-            expect(json_body[:auth_token]).to eq(user.auth_token)
+            expect(json_body[:data][:attributes][:'auth-token']).to eq(user.auth_token)
+            #depois de padronizar o retorno de json conforme as padronizaces do jsonapi.org com o inititialize implementado json_api.rb,
+            #os atributos dos retornos sao acessados desta forma nos testes, uma vez que o json retorna os objetos e atributos dentro de data
           end
       end
 
