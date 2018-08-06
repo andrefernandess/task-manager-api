@@ -23,7 +23,7 @@ RSpec.describe 'Task API' do
       end
 
       it 'return 5 tasks from database' do
-          expect(json_body[:tasks].count).to eq(5)
+          expect(json_body[:data].count).to eq(5)
       end
     end
 
