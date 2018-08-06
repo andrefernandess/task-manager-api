@@ -21,7 +21,7 @@ RSpec.describe 'Users API', type: :request do
     context 'When the user exists' do
       it 'returns the user' do
 
-        expect(json_body[:id]).to eq(user_id)
+        expect(json_body[:data][:id].to_i).to eq(user_id)
       end
 
       it 'returns status code is 200' do
